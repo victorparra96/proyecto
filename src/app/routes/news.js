@@ -33,7 +33,7 @@ const newsController= require('../controllers/newController');
 router.get('/news', newsController.list);
 router.post('/news/add', newsController.add);
 router.get('/news/eliminar/:id_noticia', newsController.eliminar);
-router.get('/news/update', newsController.update);
+router.get('/news/update/:id_news', newsController.update);
 
 
 module.exports=router;

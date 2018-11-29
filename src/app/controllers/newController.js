@@ -16,6 +16,20 @@ res.render ('news', {
 });
 }
 
+controller.update = (req, res) => {
+    const { id_news } = req.params;
+
+    conn.query('SELECT * FROM news where id_news = ?',
+          [id_news]
+        , (err, result) => {
+            res.render ('actualizar', {
+                news:result[0]           
+            });
+            console.log(result);
+        });
+        
+};
+
 controller.add = (req,res)=>{
     const {title,news} =req.body;
     
@@ -26,18 +40,6 @@ controller.add = (req,res)=>{
     }, (err,result)=>{
         res.redirect('/news');
     });
-    };
-    
-    controller.update = (req, res) => {
-        const { title, news } = req.body;
-    
-        conn.query('UPDATE news set title, news = ?',
-    
-            {
-                title, news
-            }, (err, result) => {
-                res.redirect('/actualizar');
-            });
     };
 
     controller.eliminar = (req,res)=>{
